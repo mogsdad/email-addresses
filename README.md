@@ -20,45 +20,32 @@ Use this library because you can be sure it really respects the RFC:
 
 Installation
 ------------
-npm install email-addresses
+Add as a library resource to Google Apps Script projects.
+- Publicly available, library key M26NvEFUvGLQadhq7G3OQmgFzUAA6_aCl.
+- Documentation [available here](https://script.google.com/macros/library/d/M26NvEFUvGLQadhq7G3OQmgFzUAA6_aCl/1).
+
+The only file needed for Google Apps Script is lib/email-addresses.js.
 
 Example
 -------
 
 ```
-$ node
-> addrs = require("email-addresses")
-{ [Function: parse5322]
-  parseOneAddress: [Function: parseOneAddressSimple],
-  parseAddressList: [Function: parseAddressListSimple] }
-> addrs.parseOneAddress('"Jack Bowman" <jack@fogcreek.com>')
-{ name: '"Jack Bowman"',
-  address: 'jack@fogcreek.com',
-  local: 'jack',
-  domain: 'fogcreek.com' }
-> addrs.parseAddressList('jack@fogcreek.com, Bob <bob@example.com>')
-[ { name: null,
-    address: 'jack@fogcreek.com',
-    local: 'jack',
-    domain: 'fogcreek.com' },
-  { name: 'Bob',
-    address: 'bob@example.com',
-    local: 'bob',
-    domain: 'example.com' } ]
-> addrs("jack@fogcreek.com")
-{ ast:
-   { name: 'address-list',
-     tokens: 'jack@fogcreek.com',
-     semantic: 'jack@fogcreek.com',
-     children: [ [Object] ] },
-  addresses:
-   [ { node: [Object],
-       name: null,
-       address: 'jack@fogcreek.com',
-       local: 'jack',
-       domain: 'fogcreek.com' } ] }
-> addrs("bogus")
-null
+ var result = emailAddresses.parseOneAddress('"Jack Bowman" <jack@fogcreek.com>');
+ // { name: '"Jack Bowman"',
+ //   address: 'jack@fogcreek.com',
+ //   local: 'jack',
+ //   domain: 'fogcreek.com' }
+ result = emailAddresses.parseAddressList('jack@fogcreek.com, Bob <bob@example.com>');
+ // [ { name: null,
+ //     address: 'jack@fogcreek.com',
+ //     local: 'jack',
+ //     domain: 'fogcreek.com' },
+ //   { name: 'Bob',
+ //     address: 'bob@example.com',
+ //     local: 'bob',
+ //     domain: 'example.com' } ]
+ result = emailAddresses.parseOneAddress("bogus");
+ // null
 ```
 
 References
